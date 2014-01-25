@@ -8,7 +8,7 @@ public class Growth : MonoBehaviour {
 
 	public GameObject Atom;
 
-	bool [ , ] occupied;
+	bool[ , ] occupied;
 
 
 	// Use this for initialization
@@ -44,11 +44,14 @@ public class Growth : MonoBehaviour {
 	}
 
 	void Grow() {
-
+		int counter = 0;
 		Vector2 loc = new Vector2(5, 5);
-		while (occupied[(int)loc.x, (int)loc.y] == true) {
-			if (!(loc.x > 10 || loc.x < 0 || loc.y > 10 || loc.y < 0))
-				loc = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
+		while (occupied[(int)loc.x, (int)loc.y] == true && counter < 20) {
+			Vector2 temp = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
+
+			if (!(temp.x > 10 || temp.x < 0 || temp.y > 10 || temp.y < 0))
+				loc = temp;
+			counter++;
 		}
 		occupied[(int)loc.x, (int)loc.y] = true;
 
@@ -57,7 +60,6 @@ public class Growth : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-			Debug.Log ("IN");
 			inRange = true;
 		}
 	}
