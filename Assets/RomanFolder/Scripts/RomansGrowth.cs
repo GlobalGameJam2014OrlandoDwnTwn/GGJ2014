@@ -5,6 +5,7 @@ public class RomansGrowth : MonoBehaviour {
 	
 	public bool inRange;
 	float timer;
+	public float deathTimer;
 
 	public GameObject Atom;
 	
@@ -35,6 +36,7 @@ public class RomansGrowth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer -= Time.deltaTime;
+		deathTimer -= Time.deltaTime/2;
 		
 		if (inRange && timer <= 0) {
 			ResetTimer();
