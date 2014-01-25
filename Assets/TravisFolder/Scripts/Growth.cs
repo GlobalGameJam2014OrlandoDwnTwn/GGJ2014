@@ -8,10 +8,21 @@ public class Growth : MonoBehaviour {
 
 	public GameObject Atom;
 
+	bool [ , ] occupied;
+
+
 	// Use this for initialization
 	void Start () {
+
+		occupied = new bool[10, 10];
+		for (int i = 0; i < 10; i++){
+			for (int j = 0; j < 10; j++) {
+				occupied[i,j] = false;
+			}
+		}
+		occupied[5,5] = true;
+
 		ResetTimer ();
-	
 	}
 	
 	// Update is called once per frame
@@ -33,7 +44,17 @@ public class Growth : MonoBehaviour {
 	}
 
 	void Grow() {
-		Instantiate (Atom, transform.position + new Vector3((int)(-5 + Random.value * 10), (int)(-5 + Random.value * 10), 1), transform.rotation);
+
+		Vector2 loc = new Vector2(5, 5);
+		while (occupied[(int)loc.x, (int)loc.y] == true) {
+			loc = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
+		}
+		occupied[(int)loc.x, (int)loc.y] = true;
+
+		Debug.Log (loc.x);
+		Debug.Log (loc.y);
+
+		Instantiate (Atom, transform.position + new Vector3(-5 + loc.x, -5 + loc.y, 1), transform.rotation);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -42,6 +63,13 @@ public class Growth : MonoBehaviour {
 			inRange = true;
 		}
 	}
+
+	void OnTriggerStay2D(Collider2D other) {
+
+		StopCoroutine("Leave");
+	}
+
+
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			StartCoroutine("Leave");
@@ -52,5 +80,4 @@ public class Growth : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		inRange = false;
 	}
-
 }
