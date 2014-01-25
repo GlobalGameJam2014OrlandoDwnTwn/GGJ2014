@@ -14,8 +14,8 @@ public class Growth : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		occupied = new bool[10, 10];
-		for (int i = 0; i < 10; i++){
+		occupied = new bool[11, 11];
+		for (int i = 0; i < 11; i++){
 			for (int j = 0; j < 10; j++) {
 				occupied[i,j] = false;
 			}
@@ -47,12 +47,10 @@ public class Growth : MonoBehaviour {
 
 		Vector2 loc = new Vector2(5, 5);
 		while (occupied[(int)loc.x, (int)loc.y] == true) {
-			loc = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
+			if (!(loc.x > 10 || loc.x < 0 || loc.y > 10 || loc.y < 0))
+				loc = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
 		}
 		occupied[(int)loc.x, (int)loc.y] = true;
-
-		Debug.Log (loc.x);
-		Debug.Log (loc.y);
 
 		Instantiate (Atom, transform.position + new Vector3(-5 + loc.x, -5 + loc.y, 1), transform.rotation);
 	}
