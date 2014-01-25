@@ -7,12 +7,14 @@ public class RomansGrowth : MonoBehaviour {
 	float timer;
 
 	public GameObject Atom;
+	public Sprite DecaySprite;
 	
 	public struct Node {
 		public bool occupied;
 		public bool decaying;
 		public GameObject instantiatedNode;
-		public float decayTimer;
+		public bool isSurrounded;
+		public Vector2 loc;
 	}
 	
 	Node[,] nodeArray;
@@ -53,7 +55,6 @@ public class RomansGrowth : MonoBehaviour {
 	void Grow() {
 
 		int nodeCounter = 0;
-		bool isSurrounded = false;
 		
 		Vector2 loc = new Vector2(4, 4);
 		while (nodeArray[(int)loc.x, (int)loc.y].occupied == true) {
@@ -69,14 +70,15 @@ public class RomansGrowth : MonoBehaviour {
 				if(nodeArray[(int)loc.x + i, (int)loc.y + j].occupied == true)
 					nodeCounter++;
 				
-				if (nodeCounter == 5) {
-					isSurrounded = true;
+				if (nodeCounter >= 3) {
+					nodeArray[(int)loc.x, (int)loc.y].isSurrounded = true;
 					break;
 				}
 			}
 		}
 
 		nodeArray[(int)loc.x, (int)loc.y].occupied = true;
+		nodeArray[(int)loc.x, (int)loc.y].loc = loc;
 		
 		Debug.Log (loc.x);
 		Debug.Log (loc.y);
@@ -84,9 +86,9 @@ public class RomansGrowth : MonoBehaviour {
 		nodeArray[(int)loc.x, (int)loc.y].instantiatedNode = (GameObject)
 			Instantiate (Atom, transform.position + new Vector3(-5 + loc.x, -5 + loc.y, 1), transform.rotation);
 
-		if (!isSurrounded) {
+		if (!nodeArray[(int)loc.x, (int)loc.y].isSurrounded) {
 			nodeArray[(int)loc.x, (int)loc.y].decaying = true;
-			nodeArray[(int)loc.x, (int)loc.y].decayTimer = 4f;
+			StartCoroutine("Decay", nodeArray[(int)loc.x, (int)loc.y]);
 		}
 	}
 	
@@ -112,5 +114,28 @@ public class RomansGrowth : MonoBehaviour {
 	IEnumerator Leave() {
 		yield return new WaitForSeconds(3);
 		inRange = false;
+	}
+
+	IEnumerator Decay(Node d) {
+		int nodeCounter = 0;
+		yield return new WaitForSeconds(4);
+		for(int i = -1; i < 1; i++) {
+			for(int j = -1; j < 1; j++) {
+				if((i == 0) && (j == 0))
+					continue;
+				
+				// checks the 8 blocks around the live node in question.
+				if(nodeArray[(int)d.loc.x + i, (int)d.loc.y + j].occupied == true)
+					nodeCounter++;
+				
+				if (nodeCounter >= 3) {
+					d.isSurrounded = true;
+					break;
+				}
+			}
+		}
+		if (!d.isSurrounded)
+			d.instantiatedNode.GetComponent<SpriteRenderer>().sprite = DecaySprite;
+
 	}
 }
