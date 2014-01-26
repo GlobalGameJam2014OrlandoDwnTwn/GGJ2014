@@ -30,7 +30,7 @@ public class TR_GameGUI:MonoBehaviour
 
 	void OnGUI()
 	{
-		gameScoreValue = scoreScript.GetScore();
+		gameScoreValue = (int)scoreScript.GetScore();
 		gameMultiValue = scoreScript.multiplier;
 		string scoreText = "" + gameScoreValue;
 		string multiText = "" + gameMultiValue;

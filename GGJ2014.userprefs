@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TravisFolder/Scripts/SpecialNode.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ScottsFolder\Scripts\TR_GameGUI.cs">
     <Files>
-      <File FileName="Assets/TravisFolder/Scripts/SpecialNode.cs" Line="55" Column="10" />
+      <File FileName="Assets\ScottsFolder\Scripts\TR_GameGUI.cs" Line="52" Column="3" />
+      <File FileName="Assets\TravisFolder\Scripts\SpecialNode.cs" Line="55" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
