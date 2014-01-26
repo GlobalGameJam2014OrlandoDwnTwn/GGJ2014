@@ -33,11 +33,15 @@ public class TR_GameGUI:MonoBehaviour
 		gameScoreValue = scoreScript.GetScore();
 		gameMultiValue = scoreScript.multiplier;
 		string scoreText = "" + gameScoreValue;
+		string multiText = "" + gameMultiValue;
 
 		//Instantiate score object.
-		GUI.Box(new Rect(150, 0, 50, 50), scoreText);
+		GUI.Label(new Rect(200, 10, 50, 50), scoreText);
 		GUI.Label(new Rect(10, 10, gameScore.width / 4, gameScore.height / 4), gameScore);
 
+
+		//Instantiate the Multiplier value.
+		GUI.Label (new Rect(600, 15, 100, 100), multiText);
 		//Instantiate combo object.
 		GUI.Label(new Rect(400, 15, gameCombo.width / 5, gameCombo.height / 5), gameCombo);
 
