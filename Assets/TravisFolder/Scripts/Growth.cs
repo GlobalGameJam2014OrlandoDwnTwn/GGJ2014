@@ -58,6 +58,10 @@ public class Growth : MonoBehaviour {
 		Instantiate (Atom, transform.position + new Vector3(-5 + loc.x, -5 + loc.y, 1), transform.rotation);
 	}
 
+	//void Grow2() {
+	//	while ()
+	//}
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			inRange = true;
@@ -80,4 +84,7 @@ public class Growth : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		inRange = false;
 	}
+		
+
+
 }
