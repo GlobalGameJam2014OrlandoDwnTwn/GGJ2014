@@ -33,4 +33,8 @@ public class Player : MonoBehaviour {
 		float tTheta = transform.rotation.eulerAngles.x; // offset for local space
 		transform.position += new Vector3(Mathf.Cos (tTheta * Mathf.Deg2Rad), Mathf.Sin (tTheta * Mathf.Deg2Rad), 0) * a * Time.deltaTime;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5fc94324d4dc04fedf4b475d3bf0e76b8af8fca6
