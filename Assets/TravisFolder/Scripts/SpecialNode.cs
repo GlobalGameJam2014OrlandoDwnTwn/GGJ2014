@@ -7,10 +7,19 @@ public class SpecialNode : MonoBehaviour {
 
 	public GameObject OutWind;
 
+	private ScoreScript scorescript;
+	public GameObject player;
+
+	public int numParticleEffects;
+
+	bool found;
+
 	bool hasFired = false;
 	public GameObject Enemy;
 	// Use this for initialization
 	void Awake () {
+		scorescript = GameObject.FindGameObjectWithTag("Player").GetComponent<ScoreScript>();
+		found = false;
 	
 	}
 	
@@ -26,15 +35,19 @@ public class SpecialNode : MonoBehaviour {
 			SpawnEnemies();
 
 			hasFired = true;
+			if (!found) {
+				scorescript.StartScore ();
+				found = true;
+			}
 
 		}
 	}
 	IEnumerator ParticlePlay() {
 
-
-		GameObject temp = (GameObject)Instantiate(particle2, transform.position, transform.rotation);
-		temp.GetComponent<Animator>().Play("RingShrink");
-		temp.transform.parent = this.transform;
+		int choice = (int)Mathf.Floor (Random.value * numParticleEffects);
+	//	GameObject temp = particle2.transform.FindChild(choice.ToString).gameObject;
+	//	Instantiate(temp, transform.position, transform.rotation);
+	//	temp.transform.parent = this.transform;
 		Destroy(this.transform.FindChild("wind").gameObject);
 
 		GameObject temp2 = (GameObject)Instantiate(OutWind, transform.position, transform.rotation);
