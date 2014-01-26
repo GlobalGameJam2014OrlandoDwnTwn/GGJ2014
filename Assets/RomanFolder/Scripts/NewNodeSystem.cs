@@ -10,6 +10,8 @@ public class NewNodeSystem : MonoBehaviour {
 
 	public float radius = 40;
 
+	public int level;
+
 	float c1;
 	float c2;
 	float s1;
@@ -17,6 +19,7 @@ public class NewNodeSystem : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		level = 2;
 
 		c1 = Mathf.Cos (2 * Mathf.PI / 5);
 		c2 = Mathf.Cos (Mathf.PI / 5);
@@ -26,6 +29,7 @@ public class NewNodeSystem : MonoBehaviour {
 
 		maxNodesOnScreen = 5;
 		makeNodes();
+		StartCoroutine("CheckDistance");
 	}
 	
 	// Update is called once per frame
@@ -73,14 +77,27 @@ public class NewNodeSystem : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+		level++;
+
 		for(int i = 0; i < 5; i++) {
 			if (other.gameObject != Nodes[i])
 				Destroy(Nodes[i]);
-			else
-				Nodes[i] = null;
 		}
 
 		maxNodesOnScreen = 5;
 		makeNodes();
+	}
+
+	IEnumerator CheckDistance() {
+
+		yield return new WaitForSeconds(4);
+		for (int i = 0; i < Nodes.Length; i++ ){ 
+			if (Vector3.Distance(Nodes[i].transform.position, transform.position) >= 50) {
+				Debug.Log ("Reset");
+				makeNodes();
+			}
+		}
+
+		StartCoroutine("CheckDistance");
 	}
 }

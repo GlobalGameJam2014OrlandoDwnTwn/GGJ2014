@@ -186,6 +186,7 @@ MonoBehaviour:
   maxNodesOnScreen: 0
   Nodes: []
   radius: 40
+  level: 0
 --- !u!114 &52367304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
   maxNodesOnScreen: 0
   Nodes: []
   radius: 40
+  level: 0
 --- !u!114 &52367305
 MonoBehaviour:
   m_ObjectHideFlags: 0
