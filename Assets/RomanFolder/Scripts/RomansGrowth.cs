@@ -55,12 +55,16 @@ public class RomansGrowth : MonoBehaviour {
 	}
 	
 	void Grow() {
-
+		int counter = 0;
 		int nodeCounter = 0;
 		
 		Vector2 loc = new Vector2(4, 4);
-		while (nodeArray[(int)loc.x, (int)loc.y].occupied == true) {
-			loc = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
+		while ((nodeArray[(int)loc.x, (int)loc.y].occupied == true) && (counter < 20)) {
+			Vector2 temp = new Vector2 (loc.x + Mathf.Floor(-1 + Random.value * 3), loc.y + Mathf.Floor (-1 + Random.value * 3));
+
+			if (!(temp.x > 10 || temp.x < 0 || temp.y > 10 || temp.y < 0))
+				loc = temp;
+			counter++;
 		}
 
 		for(int i = -1; i < 1; i++) {
