@@ -10,6 +10,8 @@ public class SpecialNode : MonoBehaviour {
 	private ScoreScript scorescript;
 	public GameObject player;
 
+	public GameObject ParticleEffect1;
+	public GameObject ParticleEffect2;
 	public int numParticleEffects;
 
 	bool found;
@@ -45,9 +47,22 @@ public class SpecialNode : MonoBehaviour {
 	IEnumerator ParticlePlay() {
 
 		int choice = (int)Mathf.Floor (Random.value * numParticleEffects);
-	//	GameObject temp = particle2.transform.FindChild(choice.ToString).gameObject;
-	//	Instantiate(temp, transform.position, transform.rotation);
-	//	temp.transform.parent = this.transform;
+		Debug.Log (choice);
+		GameObject temp;
+		switch (choice) {
+		case 0: 
+			temp = (GameObject)Instantiate(ParticleEffect1, transform.position, transform.rotation);
+			break;
+		
+		case 1: 
+			temp = (GameObject)Instantiate(ParticleEffect2, transform.position, transform.rotation);
+			break;
+		
+		default:
+			temp = (GameObject)Instantiate(ParticleEffect1, transform.position, transform.rotation);
+			break;
+		}
+		temp.transform.parent = this.transform;
 		Destroy(this.transform.FindChild("wind").gameObject);
 
 		GameObject temp2 = (GameObject)Instantiate(OutWind, transform.position, transform.rotation);
