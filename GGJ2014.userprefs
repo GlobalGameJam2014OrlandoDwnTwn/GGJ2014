@@ -1,18 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TravisFolder/Scripts/SpecialNode.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PatrickFolder\Scripts\SoundController.cs">
     <Files>
-      <File FileName="Assets/TravisFolder/Scripts/SpecialNode.cs" Line="43" Column="4" />
-      <File FileName="Assets/RomanFolder/Scripts/NewNodeSystem.cs" Line="47" Column="11" />
-      <File FileName="Assets/ScottsFolder/Scripts/TR_GameGUI.cs" Line="24" Column="2" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ScottsFolder\Scripts\TR_GameGUI.cs">
-    <Files>
-      <File FileName="Assets\ScottsFolder\Scripts\TR_StartMenuGUI.cs" Line="21" Column="61" />
-      <File FileName="Assets\ScottsFolder\Scripts\TR_GameGUI.cs" Line="44" Column="50" />
-      <File FileName="Assets\PatrickFolder\Scripts\ScoreScript.cs" Line="1" Column="1" />
->>>>>>> 32417362da38e20115bf0730117ba552b30b910f
+      <File FileName="Assets\PatrickFolder\Scripts\SoundController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
