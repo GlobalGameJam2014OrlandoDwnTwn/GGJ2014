@@ -18,8 +18,8 @@ public class Player : MonoBehaviour {
 		
 		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W))
 			Accelerate(vAcceleration);
-		if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S))
-			Accelerate(-vAcceleration);
+		//if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.S))
+			//Accelerate(-vAcceleration);
 		
 	}
 	
