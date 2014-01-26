@@ -16,6 +16,9 @@ public class TR_GameGUI:MonoBehaviour
 
 	private ScoreScript scoreScript;
 
+	//Declare the GUISkin to govern the GUI font.
+	public GUISkin gameSkin;
+
 	//Declare the score value.
 	private float gameScoreValue;
 	private int gameMultiValue;
@@ -30,13 +33,15 @@ public class TR_GameGUI:MonoBehaviour
 
 	void OnGUI()
 	{
+		GUI.skin = gameSkin;
+
 		gameScoreValue = (int)scoreScript.GetScore();
 		gameMultiValue = scoreScript.multiplier;
 		string scoreText = "" + gameScoreValue;
 		string multiText = "" + gameMultiValue;
 
 		//Instantiate score object.
-		GUI.Label(new Rect(200, 10, 50, 50), scoreText);
+		GUI.Label(new Rect(200, 15, 50, 50), scoreText);
 		GUI.Label(new Rect(10, 10, gameScore.width / 4, gameScore.height / 4), gameScore);
 
 
