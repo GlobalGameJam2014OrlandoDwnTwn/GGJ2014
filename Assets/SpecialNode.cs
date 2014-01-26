@@ -3,14 +3,12 @@ using System.Collections;
 
 public class SpecialNode : MonoBehaviour {
 
-	ParticleSystem particle;
 	public GameObject particle2;
 
+	bool hasFired = false;
 	public GameObject Enemy;
 	// Use this for initialization
 	void Awake () {
-		particle = this.GetComponent<ParticleSystem>();
-
 	
 	}
 	
@@ -20,21 +18,21 @@ public class SpecialNode : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player" && !hasFired) {
 			StartCoroutine("ParticlePlay");
 
 			SpawnEnemies();
+
+			hasFired = true;
 
 		}
 	}
 	IEnumerator ParticlePlay() {
 
-		particle.Play();
-
-		yield return new WaitForSeconds(1);
-		if (transform.childCount > 0)
-			Destroy(transform.FindChild("wind").gameObject);
-		Instantiate(particle2, transform.position, transform.rotation);
+		GameObject temp = (GameObject)Instantiate(particle2, transform.position, transform.rotation);
+		temp.GetComponent<Animator>().Play("RingShrink");
+		temp.transform.parent = this.transform;
+		yield return 0;
 
 	}
 
