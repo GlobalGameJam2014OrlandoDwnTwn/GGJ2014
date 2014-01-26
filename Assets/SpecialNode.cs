@@ -29,10 +29,13 @@ public class SpecialNode : MonoBehaviour {
 	}
 	IEnumerator ParticlePlay() {
 
+
 		GameObject temp = (GameObject)Instantiate(particle2, transform.position, transform.rotation);
 		temp.GetComponent<Animator>().Play("RingShrink");
 		temp.transform.parent = this.transform;
-		yield return 0;
+		yield return new WaitForSeconds(6);
+
+		Destroy (this.gameObject);
 
 	}
 
