@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SpecialNode : MonoBehaviour {
 
-	public ParticleSystem particle;
+	ParticleSystem particle;
+	public GameObject particle2;
 	// Use this for initialization
 	void Awake () {
 		particle = this.GetComponent<ParticleSystem>();
@@ -18,7 +19,18 @@ public class SpecialNode : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
-			particle.Play();
+			StartCoroutine("ParticlePlay");
+
 		}
+	}
+	IEnumerator ParticlePlay() {
+
+		particle.Play();
+
+		yield return new WaitForSeconds(1);
+		if (transform.childCount > 0)
+			Destroy(transform.FindChild("wind").gameObject);
+		Instantiate(particle2, transform.position, transform.rotation);
+
 	}
 }
