@@ -30,9 +30,12 @@ public class NewNodeSystem : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other) {
+	void OnTriggerEnter2D(Collider2D other) {
 		for(int i = 0; i < 5; i++) {
-			Destroy(Nodes[i]);
+			if (other.gameObject != Nodes[i])
+				Destroy(Nodes[i]);
+			else
+				Nodes[i] = null;
 		}
 
 		maxNodesOnScreen = 5;
