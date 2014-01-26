@@ -78,8 +78,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7903b552e6f714ee9ab47dc7583ed517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle2: {fileID: 100010, guid: d1968580ecf9645f093ef9ca16c8254c, type: 2}
+  particle2: {fileID: 100000, guid: 8a57afbe8112c40d794f3eb0d6a789c2, type: 2}
   OutWind: {fileID: 100000, guid: f7af29181faad4e3aaf2af0e41506d41, type: 2}
+  player: {fileID: 0}
+  ParticleEffect1: {fileID: 100010, guid: d1968580ecf9645f093ef9ca16c8254c, type: 2}
+  ParticleEffect2: {fileID: 100002, guid: 299151fd458be46c5af44ea697975fc5, type: 2}
+  numParticleEffects: 2
   Enemy: {fileID: 100000, guid: e6413110888d442c6b207bab6eb83f50, type: 2}
 --- !u!182 &18200000
 WindZone:
