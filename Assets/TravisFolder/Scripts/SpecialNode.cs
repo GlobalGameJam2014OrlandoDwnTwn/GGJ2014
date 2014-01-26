@@ -8,20 +8,37 @@ public class SpecialNode : MonoBehaviour {
 	public GameObject OutWind;
 
 	private ScoreScript scorescript;
-	public GameObject player;
+	GameObject player;
 
 	public GameObject ParticleEffect1;
 	public GameObject ParticleEffect2;
 	public int numParticleEffects;
 
+	public float numSpawned;
+	public float enemyRadius;
+
 	bool found;
 
 	bool hasFired = false;
+
+	float c1;
+	float c2;
+	float s1;
+	float s2;
+
 	public GameObject Enemy;
 	// Use this for initialization
 	void Awake () {
+
+		numSpawned = 2;
 		scorescript = GameObject.FindGameObjectWithTag("Player").GetComponent<ScoreScript>();
 		found = false;
+		player = GameObject.FindGameObjectWithTag("Player");
+
+		c1 = Mathf.Cos (2 * Mathf.PI / 5);
+		c2 = Mathf.Cos (Mathf.PI / 5);
+		s1 = Mathf.Sin (2 * Mathf.PI / 5);
+		s2 = Mathf.Sin (4 * Mathf.PI / 5);
 	
 	}
 	
@@ -47,7 +64,6 @@ public class SpecialNode : MonoBehaviour {
 	IEnumerator ParticlePlay() {
 
 		int choice = (int)Mathf.Floor (Random.value * numParticleEffects);
-		Debug.Log (choice);
 		GameObject temp;
 		switch (choice) {
 		case 0: 
@@ -79,8 +95,40 @@ public class SpecialNode : MonoBehaviour {
 	}
 
 	void SpawnEnemies() {
-		for (int i = 0; i < 2; i++) {
-			Instantiate(Enemy, transform.position + new Vector3(-15 + Random.value * 30, -15 + Random.value * 30, 0), transform.rotation);
+
+		numSpawned = player.GetComponent<NewNodeSystem>().level;
+
+		for (int i = 0; i < numSpawned; i++) {
+			float tempRadius = enemyRadius;
+			if (Mathf.Floor (i / 5) > 0)
+				tempRadius = enemyRadius * Mathf.Floor (i / 5);
+			switch(i % 5){
+			case 0:
+				Instantiate(Enemy, transform.position + new Vector3(tempRadius * -s1,
+				                                                                           tempRadius * c1,
+				                                                                           1), transform.rotation);
+				break;
+			case 1:
+				Instantiate(Enemy, transform.position + new Vector3(tempRadius * 0,
+				                                                                           tempRadius * 1,
+				                                                                           1), transform.rotation);				
+				break;
+			case 2:
+				Instantiate(Enemy, transform.position + new Vector3(tempRadius * s1,
+				                                                                           tempRadius * c1,
+				                                                                           1), transform.rotation);				
+				break;
+			case 3:
+				Instantiate(Enemy, transform.position + new Vector3(tempRadius * s2,
+				                                                                           tempRadius * -c2,
+				                                                                           1), transform.rotation);				
+				break;
+			case 4:
+				Instantiate(Enemy, transform.position + new Vector3(tempRadius * -s2,
+				                                                                           tempRadius * -c2,
+				                                                                           1), transform.rotation);				
+				break;
+			}
 		}
 	}
 }
