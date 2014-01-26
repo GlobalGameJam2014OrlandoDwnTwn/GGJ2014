@@ -5,6 +5,8 @@ public class SpecialNode : MonoBehaviour {
 
 	public GameObject particle2;
 
+	public GameObject OutWind;
+
 	bool hasFired = false;
 	public GameObject Enemy;
 	// Use this for initialization
@@ -33,7 +35,16 @@ public class SpecialNode : MonoBehaviour {
 		GameObject temp = (GameObject)Instantiate(particle2, transform.position, transform.rotation);
 		temp.GetComponent<Animator>().Play("RingShrink");
 		temp.transform.parent = this.transform;
-		yield return new WaitForSeconds(6);
+		Destroy(this.transform.FindChild("wind").gameObject);
+
+		GameObject temp2 = (GameObject)Instantiate(OutWind, transform.position, transform.rotation);
+		temp2.transform.parent = this.transform;
+
+		yield return new WaitForSeconds(1);
+
+		Destroy (this.transform.FindChild("outWind(Clone)").gameObject);
+
+		yield return new WaitForSeconds(5);
 
 		Destroy (this.gameObject);
 
