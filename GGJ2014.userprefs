@@ -1,20 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerMoveGGNORE.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ScottsFolder\Scripts\TR_StartMenuGUI.cs">
     <Files>
-      <File FileName="Assets/TravisFolder/Scripts/PlayerMoveGGNORE.cs" Line="1" Column="1" />
-      <File FileName="Assets/TravisFolder/Scripts/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/PlayerMoveGGNORE.cs" Line="23" Column="3" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RomanFolder\Scripts\NewNodeSystem.cs">
-    <Files>
-      <File FileName="Assets\TravisFolder\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\TravisFolder\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\TravisFolder\Scripts\PlayerFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\SpecialNode.cs" Line="1" Column="1" />
-      <File FileName="Assets\RomanFolder\Scripts\NewNodeSystem.cs" Line="28" Column="8" />
->>>>>>> 8ceb434ac3e22e3ed9f60a198b5184f1b3054d30
+      <File FileName="Assets\ScottsFolder\Scripts\TR_StartMenuGUI.cs" Line="21" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
