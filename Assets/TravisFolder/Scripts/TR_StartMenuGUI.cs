@@ -25,7 +25,7 @@ public class TR_StartMenuGUI:MonoBehaviour
 		{
 			//Check to see if the play button is pressed.
 			//Load the main play scene.
-			//Application.LoadLevel ();
+			Application.LoadLevel ("TravisScene");
 		}
 
 

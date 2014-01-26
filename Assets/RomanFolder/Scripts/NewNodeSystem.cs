@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NewNodeSystem : MonoBehaviour {
 
 	public GameObject Node;
 	public int maxNodesOnScreen;
 
-	public GameObject[] Nodes;
 
 	public float radius = 40;
 
@@ -16,6 +16,8 @@ public class NewNodeSystem : MonoBehaviour {
 	float c2;
 	float s1;
 	float s2;
+
+	ArrayList Nodes = new ArrayList();
 	
 	// Use this for initialization
 	void Start () {
@@ -38,36 +40,36 @@ public class NewNodeSystem : MonoBehaviour {
 	}
 
 	void makeNodes() {
-		Nodes = new GameObject[5];
+		Nodes.Clear();
 		int i = 0;
 		int counter = 0;
 		while(maxNodesOnScreen >= 1) {
 			counter++;
 			switch(counter){
 			case 1:
-				Nodes[i] = (GameObject) Instantiate(Node, transform.position + new Vector3(radius * -s1 - 10 + Random.value * 20,
+				Nodes.Add((GameObject) Instantiate(Node, transform.position + new Vector3(radius * -s1 - 10 + Random.value * 20,
 				                                                                           radius * c1 - 10 + Random.value * 20,
-				                                                                           1), transform.rotation);
+				                                                                           1), transform.rotation));
 				break;
 			case 2:
-				Nodes[i] = (GameObject) Instantiate(Node, transform.position + new Vector3(radius * 0 - 10 + Random.value * 20,
+				Nodes.Add ((GameObject) Instantiate(Node, transform.position + new Vector3(radius * 0 - 10 + Random.value * 20,
 				                                                                           radius * 1 - 10 + Random.value * 20,
-				                                                                           1), transform.rotation);				
+				                                                                           1), transform.rotation));				
 				break;
 			case 3:
-				Nodes[i] = (GameObject) Instantiate(Node, transform.position + new Vector3(radius * s1 - 10 + Random.value * 20,
+				Nodes.Add((GameObject) Instantiate(Node, transform.position + new Vector3(radius * s1 - 10 + Random.value * 20,
 				                                                                           radius * c1 - 10 + Random.value * 20,
-				                                                                           1), transform.rotation);				
+				                                                                           1), transform.rotation));				
 				break;
 			case 4:
-				Nodes[i] = (GameObject) Instantiate(Node, transform.position + new Vector3(radius * s2 - 10 + Random.value * 20,
+				Nodes.Add((GameObject) Instantiate(Node, transform.position + new Vector3(radius * s2 - 10 + Random.value * 20,
 				                                                                           radius * -c2 - 10 + Random.value * 20,
-				                                                                           1), transform.rotation);				
+				                                                                           1), transform.rotation));				
 				break;
 			case 5:
-				Nodes[i] = (GameObject) Instantiate(Node, transform.position + new Vector3(radius * -s2 - 10 + Random.value * 20,
+				Nodes.Add ((GameObject) Instantiate(Node, transform.position + new Vector3(radius * -s2 - 10 + Random.value * 20,
 				                                                                           radius * -c2 - 10 + Random.value * 200,
-				                                                                           1), transform.rotation);				
+				                                                                           1), transform.rotation));				
 				break;
 			}
 
@@ -79,9 +81,11 @@ public class NewNodeSystem : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		level++;
 
-		for(int i = 0; i < 5; i++) {
+		for(int i = 0; i < Nodes.Count; i++) {
 			if (other.gameObject != Nodes[i])
-				Destroy(Nodes[i]);
+				Destroy((GameObject)Nodes[i]);
+			else
+				Nodes.RemoveAt(i);
 		}
 
 		maxNodesOnScreen = 5;
@@ -91,9 +95,12 @@ public class NewNodeSystem : MonoBehaviour {
 	IEnumerator CheckDistance() {
 
 		yield return new WaitForSeconds(4);
-		for (int i = 0; i < Nodes.Length; i++ ){ 
-			if (Vector3.Distance(Nodes[i].transform.position, transform.position) >= 50) {
+		for (int i = 0; i < Nodes.Count; i++ ){ 
+			if (Vector3.Distance(((GameObject)(Nodes[i])).transform.position, transform.position) >= 200) {
 				Debug.Log ("Reset");
+				for (int j = 0 ; j < Nodes.Count; j++) {
+					Destroy ((GameObject)Nodes[i]);
+				}
 				makeNodes();
 			}
 		}

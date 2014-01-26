@@ -184,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Node: {fileID: 100000, guid: 77a2f6bd1739e4d2189004a3206911cd, type: 2}
   maxNodesOnScreen: 0
-  Nodes: []
   radius: 40
   level: 0
 --- !u!114 &52367304
@@ -201,7 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Node: {fileID: 100000, guid: 77a2f6bd1739e4d2189004a3206911cd, type: 2}
   maxNodesOnScreen: 0
-  Nodes: []
   radius: 40
   level: 0
 --- !u!114 &52367305
@@ -323,12 +321,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 232149560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ef4dbc96c17214cabb2f68c4202b55, type: 3}
+  m_Script: {fileID: 11500000, guid: 256a203bfafa648ea92c39fc33b6682f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameScore: {fileID: 2800000, guid: 68265127263b33f4d9de826a941424a3, type: 3}
   gameCombo: {fileID: 2800000, guid: 13e8635a37775294180ddf78d28f65c7, type: 3}
   gameMulti: {fileID: 2800000, guid: 46ad44da06e5fd24abc6961fbd212dba, type: 3}
+  gameSkin: {fileID: 11400000, guid: 9e5dd35093e7452478f41abc7e80ded4, type: 2}
 --- !u!1 &598684392
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,7 @@ public class TR_GameGUI:MonoBehaviour
 
 
 		//Instantiate the Multiplier value.
-		GUI.Label (new Rect(600, 15, 100, 100), multiText);
+		GUI.Label (new Rect(600, 17, 100, 100), multiText);
 		//Instantiate combo object.
 		GUI.Label(new Rect(400, 15, gameCombo.width / 5, gameCombo.height / 5), gameCombo);
 
