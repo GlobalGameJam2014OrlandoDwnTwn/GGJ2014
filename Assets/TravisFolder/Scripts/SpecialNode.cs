@@ -64,8 +64,6 @@ public class SpecialNode : MonoBehaviour {
 	}
 
 	void SpawnEnemies() {
-		for (int i = 0; i < 2; i++) {
-			Instantiate(Enemy, transform.position + new Vector3(-15 + Random.value * 30, -15 + Random.value * 30, 0), transform.rotation);
-		}
+		Instantiate(Enemy, transform.position + new Vector3(-15 + Random.value * 30, -15 + Random.value * 30, 0), transform.rotation);
 	}
 }
