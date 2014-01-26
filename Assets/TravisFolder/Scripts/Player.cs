@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour {
@@ -12,9 +13,9 @@ public class Player : MonoBehaviour {
 	void Update () {
 		// Controls: WASD or Arrow Keys
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-			transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+			Sideways ( -vAcceleration );
 		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-			transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
+			Sideways ( vAcceleration );
 		
 		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.W))
 			Accelerate(vAcceleration);
@@ -25,6 +26,11 @@ public class Player : MonoBehaviour {
 	
 	void Accelerate (float a) {
 		float tTheta = transform.rotation.eulerAngles.z + 90; // offset for local space
+		transform.position += new Vector3(Mathf.Cos (tTheta * Mathf.Deg2Rad), Mathf.Sin (tTheta * Mathf.Deg2Rad), 0) * a * Time.deltaTime;
+	}
+
+	void Sideways (float a) {
+		float tTheta = transform.rotation.eulerAngles.x; // offset for local space
 		transform.position += new Vector3(Mathf.Cos (tTheta * Mathf.Deg2Rad), Mathf.Sin (tTheta * Mathf.Deg2Rad), 0) * a * Time.deltaTime;
 	}
 }
