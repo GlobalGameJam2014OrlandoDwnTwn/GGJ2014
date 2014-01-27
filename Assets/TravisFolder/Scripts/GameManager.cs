@@ -3,19 +3,43 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject Node;
+	public GameObject player;
+	int lives;
 
 	// Use this for initialization
 	void Start () {
+		lives = 3;
 
-		for (int i = 0; i < 5; i++) {
-			Instantiate(Node, transform.position + new Vector3(Random.value * 50, Random.value * 50, 1), transform.rotation);
-		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(Input.GetKey(KeyCode.Escape))
+			Application.Quit();
 	
 	}
+
+	public void PlayerDeath() {
+		Debug.Log ("E");
+		lives--;
+		StartCoroutine("Restart");
+	}
+
+	IEnumerator Restart() {
+
+		GameObject[] e = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(GameObject o in e) {
+
+			Destroy(o.gameObject);
+		}
+		Camera.main.GetComponent<PlayerFollow>().target = Camera.main.transform;
+
+		yield return new WaitForSeconds(2);
+		Application.LoadLevel("TravisScene");
+
+	}
+
+
 	
 }

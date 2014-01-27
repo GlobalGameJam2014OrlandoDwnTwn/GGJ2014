@@ -7,10 +7,15 @@ public class NewNodeSystem : MonoBehaviour {
 	public GameObject Node;
 	public int maxNodesOnScreen;
 
+	public GameObject deathParticleEffect;
+	GameManager manager;
+
 
 	public float radius = 40;
-
+	bool hasDied;
 	public int level;
+
+	int lives;
 
 	float c1;
 	float c2;
@@ -21,6 +26,10 @@ public class NewNodeSystem : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		hasDied = false;
+
+		manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+		lives = 3;
 		level = 2;
 
 		c1 = Mathf.Cos (2 * Mathf.PI / 5);
@@ -79,6 +88,13 @@ public class NewNodeSystem : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.tag == "Enemy" && !hasDied){
+			Debug.Log ("RR");
+			hasDied = true;
+			manager.PlayerDeath();
+			Death();
+		}
+
 		level++;
 
 		for(int i = 0; i < Nodes.Count; i++) {
@@ -90,6 +106,13 @@ public class NewNodeSystem : MonoBehaviour {
 
 		maxNodesOnScreen = 5;
 		makeNodes();
+	}
+
+	void Death() {
+
+		Instantiate(deathParticleEffect, transform.position, transform.rotation);
+		Destroy (this.gameObject);
+
 	}
 
 	IEnumerator CheckDistance() {

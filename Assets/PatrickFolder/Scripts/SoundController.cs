@@ -6,7 +6,7 @@ public class SoundController : MonoBehaviour {
 
 	public AudioClip [] notes;
 	private float 	 clipTimer;
-	private int 	 clipCount;
+	public int 	 clipCount;
 	// Use this for initialization
 	void Start () 
 	{
@@ -28,7 +28,12 @@ public class SoundController : MonoBehaviour {
 	public void StartSound()
 	{
 		clipTimer += 2.0f;
-		clipCount++;
+
+		if(clipCount != 8)
+			clipCount++;
+		else
+			clipCount = clipCount - Random.Range(0,clipCount);
+
 		PlayClip();
 	}
 	public void PlayClip()

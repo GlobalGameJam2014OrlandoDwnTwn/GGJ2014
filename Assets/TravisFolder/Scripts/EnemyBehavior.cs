@@ -8,6 +8,8 @@ public class EnemyBehavior : MonoBehaviour {
 	
 	public float rotationSpeed;
 	public float moveSpeed;
+
+	public GameObject EnemyDeathParticle;
 	
 	CharacterController character;
 	
@@ -36,6 +38,12 @@ public class EnemyBehavior : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 	}
+
+	public void Kill() {
+		Instantiate(EnemyDeathParticle, transform.position, transform.rotation);
+		Destroy (this.gameObject);
+	}
+
 }
 
 

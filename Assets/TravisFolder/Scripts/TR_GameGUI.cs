@@ -41,7 +41,7 @@ public class TR_GameGUI:MonoBehaviour
 		string multiText = "" + gameMultiValue;
 
 		//Instantiate score object.
-		GUI.Label(new Rect(200, 15, 50, 50), scoreText);
+		GUI.Label(new Rect(200, 15, 100, 50), scoreText);
 		GUI.Label(new Rect(10, 10, gameScore.width / 4, gameScore.height / 4), gameScore);
 
 

@@ -10,10 +10,11 @@ public class ScoreScript : MonoBehaviour
 	public int multiplier;
 		
 	private bool firstNodeTriggered;
-
+	private SoundController player;
 	// Use this for initialization
 	void Start ()
 	{
+		player = this.gameObject.GetComponent<SoundController>();
 		score = lastScore = 0.0f;
 		firstNodeTriggered = false;
 		multiplierTime = 0.0f;
@@ -67,7 +68,7 @@ public class ScoreScript : MonoBehaviour
 		
 		public void AddToMultiplierTime()
 		{
-		  
+		player.StartSound();
 			if(multiplierTime < 10.0f)
 			multiplierTime = 10.0f;
 			
